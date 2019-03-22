@@ -1,0 +1,23 @@
+# Visual Studio
+/bin/
+/obj/
+/Properties/
+*.config
+*.csproj
+ 
+# Builds
+/build/
+*.bat
+*.apk
+*.app
+*.exe
+
+# Windows
+*.sh
+*.bat
+
+# Temporary files
+visual.txt
+
+# Merge files
+*.orig
