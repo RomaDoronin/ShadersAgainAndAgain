@@ -30,6 +30,12 @@ namespace shaderlabonly
         /// </summary>
         private float radius;
 
+        int ShaderProgramID;
+        int VertexShaderID;
+        int FragmentShaderID;
+
+        int[] vaoHandle = new int[1];
+
         // Setters and Getters ------------------------------------------------
         public void SetLatitude(float val)
         {

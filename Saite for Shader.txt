@@ -1,0 +1,2 @@
+https://gamedevelopment.tutsplus.com/ru/tutorials/a-beginners-guide-to-coding-graphics-shaders--cms-23313
+https://www.shadertoy.com/
