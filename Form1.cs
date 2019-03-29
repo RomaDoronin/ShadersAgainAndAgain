@@ -54,13 +54,13 @@ namespace shaderlabonly
 
         private void Render()
         {
-            GL.Clear(ClearBufferMask.ColorBufferBit);
+            /*GL.Clear(ClearBufferMask.ColorBufferBit);
  
-            //GL.Color3(Color.SkyBlue);
-            //GL.BindVertexArray(vaoHandle[0]);
-            //GL.DrawArrays(PrimitiveType.Quads, 0, 4);
+            GL.Color3(Color.SkyBlue);
+            GL.BindVertexArray(vaoHandle[0]);
+            GL.DrawArrays(PrimitiveType.Quads, 0, 4);
 
-            glControl1.SwapBuffers();
+            glControl1.SwapBuffers();*/
 
         }
 

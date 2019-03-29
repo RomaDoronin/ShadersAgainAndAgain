@@ -1,9 +1,12 @@
 #version 430
 
-in vec3 glPosition;
-out vec4 vFragColor;
+//in vec3 Color;
+//out vec4 FragColor;
+// gl_FragCoord;
+
+#define GOLD vec4(1.0, 0.86, 0.6, 1.0)
 
 void main(void)
 {
-	vFragColor = vec4(1.0, 0.0, 0.0, 1.0);
+	gl_FragColor = GOLD;
 }

@@ -2,11 +2,9 @@
 
 // Вызывается для каждой вершины
 
-in vec3 vPosition; // Нам приходит
-out vec3 glPosition; // Мы отправляем дальше
+attribute vec2 a_position;
 
 void main()
 {
-    gl_Position = vec4(vPosition, 1.0); // Необходимо присвоить
-	glPosition = vPosition;
+    gl_Position = vec4(a_position, 0, 1); // Координаты для вершинного шейдера
 }
