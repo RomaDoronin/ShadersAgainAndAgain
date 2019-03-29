@@ -19,6 +19,13 @@ namespace shaderlabonly
         int VertexShaderID;
         int FragmentShaderID;
 
+        float counter = 0.0f;
+        float deltaTime = 0.0f;
+        float changeRate = 0.001f;
+        int myUniformLocation;
+        int myUniformPosition;
+        int iTime;
+
         Color BackgroundColor = Color.LightGreen;
 
         int[] vaoHandle = new int[1];
@@ -31,10 +38,18 @@ namespace shaderlabonly
         private void glControl1_Load(object sender, EventArgs e)
         {
             InitShaders();
+            InitUniformVariable();
             CreateBuffers();
             SetupViewport();
 
             Application.Idle += Application_Idle;
+        }
+
+        private void InitUniformVariable()
+        {
+            myUniformLocation = GL.GetUniformLocation(ShaderProgramID, "myUniform");
+            myUniformPosition = GL.GetUniformLocation(ShaderProgramID, "myUniformPosition");
+            iTime = GL.GetUniformLocation(ShaderProgramID, "iTime");
         }
 
         private void SetupViewport()
@@ -54,13 +69,26 @@ namespace shaderlabonly
 
         private void Render()
         {
-            /*GL.Clear(ClearBufferMask.ColorBufferBit);
+            counter += changeRate;
+            label1.Text = counter.ToString();
+
+            float messageVal = (float)(Math.Abs(Math.Sin(counter)));
+            if (messageVal == 1)
+                counter = 0;
+            GL.Uniform1(myUniformPosition, messageVal * 2);
+            
+            GL.Uniform4(myUniformLocation, messageVal, 1 - messageVal, 1.0f, 1.0f);
+            deltaTime += 0.001f;
+            GL.Uniform1(iTime, deltaTime);
+            
+
+
+            GL.Clear(ClearBufferMask.ColorBufferBit);
  
-            GL.Color3(Color.SkyBlue);
             GL.BindVertexArray(vaoHandle[0]);
             GL.DrawArrays(PrimitiveType.Quads, 0, 4);
-
-            glControl1.SwapBuffers();*/
+            
+            glControl1.SwapBuffers();
 
         }
 
@@ -111,18 +139,19 @@ namespace shaderlabonly
         {
             // VBO - VERTEX BUFFER OBJECT
 
-            float div = 0.15f;
+            float div = 0.0f;
 
             // Вершины фигуры
             var positionData = new float[] {  -1.0f      , -1.0f + div, 0.0f,
                                                1.0f - div, -1.0f      , 0.0f,
                                                1.0f      ,  1.0f - div, 0.0f,
-                                              -1.0f + div,  1.0f, 0.0f        };
+                                              -1.0f + div,  1.0f,       0.0f  };
 
-            var colorData = new float[]{ 1.0f, 0.5f, 0.4f,
-                                         0.5f, 1.0f, 0.0f,
-                                         0.7f, 0.4f, 1.0f,
-                                         0.8f, 0.2f, 1.0f};
+            var colorData = new float[] { 1.0f, 0.5f, 0.4f,
+                                          0.5f, 1.0f, 0.0f,
+
+                                          0.7f, 0.4f, 1.0f,
+                                          0.8f, 0.2f, 1.0f  };
 
 
             int[] vboHandles = new int[2];
@@ -166,6 +195,7 @@ namespace shaderlabonly
             GL.LinkProgram(ShaderProgramID);
             Console.WriteLine(GL.GetProgramInfoLog(ShaderProgramID));
             GL.UseProgram(ShaderProgramID);
+
             return true;
         }
     }
